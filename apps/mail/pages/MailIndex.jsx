@@ -3,6 +3,7 @@ const { useEffect, useState } = React
 import { mailService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFolderList } from '../cmps/MailFolderList.jsx'
+import { MailFilter } from '../cmps/MailFilter.jsx'
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
@@ -20,9 +21,12 @@ export function MailIndex() {
             })
     }
 
-    function onSetFilter(status) {
-        setFilterBy({ status })
-    }
+function onSetFilter(filterByToEdit) {
+    setFilterBy(prevFilter => ({
+        ...prevFilter,
+        ...filterByToEdit,
+    }))
+}
 
     if (!mails) return <div>Loading...</div>
 
@@ -31,8 +35,9 @@ export function MailIndex() {
             <h1>MisterEmail</h1>
 
             <MailFolderList onSetFilter={onSetFilter} />
-
             <MailList mails={mails} />
+            <MailFilter onSetFilter={onSetFilter} />
+
         </section>
     )
 }

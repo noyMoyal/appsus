@@ -67,7 +67,22 @@ function query(filterBy = {}) {
             if (filterBy.status === 'sent') {
                 mails = mails.filter(mail => mail.from === loggedinUser.email)
             }
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
 
+                mails = mails.filter(mail =>
+                    regex.test(mail.subject) ||
+                    regex.test(mail.body) ||
+                    regex.test(mail.from)
+                )
+            }
+            if (filterBy.isRead === 'read') {
+                mails = mails.filter(mail => mail.isRead)
+            }
+
+            if (filterBy.isRead === 'unread') {
+                mails = mails.filter(mail => !mail.isRead)
+            }
             return mails
         })
 }
