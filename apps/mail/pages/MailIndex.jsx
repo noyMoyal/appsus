@@ -4,10 +4,12 @@ import { mailService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFolderList } from '../cmps/MailFolderList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
+import { MailDetails } from './MailDetails.jsx'
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
+    const [selectedMail, setSelectedMail] = useState(null)
 
     useEffect(() => {
         loadMails()
@@ -21,21 +23,50 @@ export function MailIndex() {
             })
     }
 
-function onSetFilter(filterByToEdit) {
-    setFilterBy(prevFilter => ({
-        ...prevFilter,
-        ...filterByToEdit,
-    }))
-}
+    function onSetFilter(filterByToEdit) {
+        setFilterBy(prevFilter => ({
+            ...prevFilter,
+            ...filterByToEdit,
+        }))
+    }
+
+    function onSelectMail(mail) {
+        if (mail.isRead) {
+            setSelectedMail(mail)
+            return
+        }
+
+        const mailToSave = {
+            ...mail,
+            isRead: true,
+        }
+
+        mailService.save(mailToSave)
+            .then(savedMail => {
+                setSelectedMail(savedMail)
+                loadMails()
+            })
+            .catch(err => {
+                console.log('Cannot update mail:', err)
+            })
+    }
+
+    function onBack() {
+        setSelectedMail(null)
+    }
 
     if (!mails) return <div>Loading...</div>
+
+    if (selectedMail) {
+        return <MailDetails mail={selectedMail} onBack={onBack} />
+    }
 
     return (
         <section className="mail-index">
             <h1>MisterEmail</h1>
 
             <MailFolderList onSetFilter={onSetFilter} />
-            <MailList mails={mails} />
+            <MailList mails={mails} onSelectMail={onSelectMail} />
             <MailFilter onSetFilter={onSetFilter} />
 
         </section>

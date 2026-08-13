@@ -1,6 +1,9 @@
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onSelectMail }) {
     return (
-        <article className="mail-preview">
+        <article
+            className="mail-preview"
+            onClick={() => onSelectMail(mail)}
+        >
             <h3>{mail.subject}</h3>
             <p>{mail.from}</p>
             <p>{mail.body}</p>

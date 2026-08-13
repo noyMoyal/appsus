@@ -2,6 +2,8 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 export const mailService = {
     query,
+    getById,
+    save,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -67,6 +69,7 @@ function query(filterBy = {}) {
             if (filterBy.status === 'sent') {
                 mails = mails.filter(mail => mail.from === loggedinUser.email)
             }
+
             if (filterBy.txt) {
                 const regex = new RegExp(filterBy.txt, 'i')
 
@@ -76,6 +79,7 @@ function query(filterBy = {}) {
                     regex.test(mail.from)
                 )
             }
+
             if (filterBy.isRead === 'read') {
                 mails = mails.filter(mail => mail.isRead)
             }
@@ -83,6 +87,15 @@ function query(filterBy = {}) {
             if (filterBy.isRead === 'unread') {
                 mails = mails.filter(mail => !mail.isRead)
             }
+
             return mails
         })
+}
+
+function getById(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+}
+
+function save(mail) {
+    return storageService.put(MAIL_KEY, mail)
 }
