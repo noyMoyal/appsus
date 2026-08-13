@@ -60,6 +60,14 @@ function _createMails() {
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            return mails.filter(mail => mail.to === loggedinUser.email)
+            if (filterBy.status === 'inbox') {
+                mails = mails.filter(mail => mail.to === loggedinUser.email)
+            }
+
+            if (filterBy.status === 'sent') {
+                mails = mails.filter(mail => mail.from === loggedinUser.email)
+            }
+
+            return mails
         })
 }
