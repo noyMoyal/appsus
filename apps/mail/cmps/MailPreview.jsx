@@ -1,4 +1,9 @@
-export function MailPreview({ mail, onSelectMail }) {
+export function MailPreview({ mail, onSelectMail, onRemoveMail }) {
+    function onDelete(ev) {
+        ev.stopPropagation()
+        onRemoveMail(mail.id)
+    }
+
     return (
         <article
             className="mail-preview"
@@ -7,6 +12,8 @@ export function MailPreview({ mail, onSelectMail }) {
             <h3>{mail.subject}</h3>
             <p>{mail.from}</p>
             <p>{mail.body}</p>
+
+            <button onClick={onDelete}>Delete</button>
         </article>
     )
 }

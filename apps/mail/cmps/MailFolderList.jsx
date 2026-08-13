@@ -8,6 +8,10 @@ export function MailFolderList({ onSetFilter }) {
             <button onClick={() => onSetFilter({ status: 'sent' })}>
                 Sent
             </button>
+
+            <button onClick={() => onSetFilter({ status: 'trash' })}>
+                Trash
+            </button>
         </nav>
     )
 }

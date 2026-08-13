@@ -55,6 +55,16 @@ export function MailIndex() {
         setSelectedMail(null)
     }
 
+    function onRemoveMail(mailId) {
+        mailService.remove(mailId)
+            .then(() => {
+                loadMails()
+            })
+            .catch(err => {
+                console.log('Cannot remove mail:', err)
+            })
+    }
+
     if (!mails) return <div>Loading...</div>
 
     if (selectedMail) {
@@ -66,7 +76,11 @@ export function MailIndex() {
             <h1>MisterEmail</h1>
 
             <MailFolderList onSetFilter={onSetFilter} />
-            <MailList mails={mails} onSelectMail={onSelectMail} />
+            <MailList
+                mails={mails}
+                onSelectMail={onSelectMail}
+                onRemoveMail={onRemoveMail}
+            />
             <MailFilter onSetFilter={onSetFilter} />
 
         </section>

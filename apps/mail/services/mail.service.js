@@ -4,6 +4,7 @@ export const mailService = {
     query,
     getById,
     save,
+    remove,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -80,12 +81,22 @@ function query(filterBy = {}) {
                 )
             }
 
-            if (filterBy.isRead === 'read') {
-                mails = mails.filter(mail => mail.isRead)
+            if (filterBy.status === 'inbox') {
+                mails = mails.filter(mail =>
+                    mail.to === loggedinUser.email &&
+                    !mail.removedAt
+                )
             }
 
-            if (filterBy.isRead === 'unread') {
-                mails = mails.filter(mail => !mail.isRead)
+            if (filterBy.status === 'sent') {
+                mails = mails.filter(mail =>
+                    mail.from === loggedinUser.email &&
+                    !mail.removedAt
+                )
+            }
+
+            if (filterBy.status === 'trash') {
+                mails = mails.filter(mail => mail.removedAt)
             }
 
             return mails
@@ -98,4 +109,16 @@ function getById(mailId) {
 
 function save(mail) {
     return storageService.put(MAIL_KEY, mail)
+}
+
+function remove(mailId) {
+    return getById(mailId)
+        .then(mail => {
+            const mailToSave = {
+                ...mail,
+                removedAt: Date.now(),
+            }
+
+            return save(mailToSave)
+        })
 }
