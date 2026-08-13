@@ -5,11 +5,13 @@ import { MailList } from '../cmps/MailList.jsx'
 import { MailFolderList } from '../cmps/MailFolderList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailDetails } from './MailDetails.jsx'
+import { MailCompose } from '../cmps/MailCompose.jsx'
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
     const [selectedMail, setSelectedMail] = useState(null)
+    const [isComposeOpen, setIsComposeOpen] = useState(false)
 
     useEffect(() => {
         loadMails()
@@ -65,6 +67,15 @@ export function MailIndex() {
             })
     }
 
+    function onOpenCompose() {
+        setIsComposeOpen(true)
+    }
+
+    function onCloseCompose() {
+        setIsComposeOpen(false)
+        loadMails()
+    }
+
     if (!mails) return <div>Loading...</div>
 
     if (selectedMail) {
@@ -74,6 +85,12 @@ export function MailIndex() {
     return (
         <section className="mail-index">
             <h1>MisterEmail</h1>
+
+            <button onClick={onOpenCompose}>Compose</button>
+
+            {isComposeOpen && (
+                <MailCompose onClose={onCloseCompose} />
+            )}
 
             <MailFolderList onSetFilter={onSetFilter} />
             <MailList

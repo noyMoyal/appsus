@@ -5,6 +5,7 @@ export const mailService = {
     getById,
     save,
     remove,
+    add,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -121,4 +122,17 @@ function remove(mailId) {
 
             return save(mailToSave)
         })
+}
+
+function add(mail) {
+    const mailToSave = {
+        ...mail,
+        createdAt: Date.now(),
+        isRead: true,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: loggedinUser.email,
+    }
+
+    return storageService.post(MAIL_KEY, mailToSave)
 }
