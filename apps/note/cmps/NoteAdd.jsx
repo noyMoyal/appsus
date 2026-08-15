@@ -6,11 +6,11 @@ export function NoteAdd({ onAddNote }) {
   const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
 
   function handleChange({ target }) {
-    const { value } = target
+    const { name, value } = target
 
     setNoteToAdd((prev) => ({
       ...prev,
-      info: { ...prev.info, txt: value },
+      info: { ...prev.info, [name]: value },
     }))
   }
 
