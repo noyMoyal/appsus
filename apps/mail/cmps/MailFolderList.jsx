@@ -1,8 +1,8 @@
-export function MailFolderList({ onSetFilter }) {
+export function MailFolderList({ onSetFilter, unreadCount }) {
     return (
         <nav className="mail-folder-list">
             <button onClick={() => onSetFilter({ status: 'inbox' })}>
-                Inbox
+                Inbox ({unreadCount})
             </button>
 
             <button onClick={() => onSetFilter({ status: 'sent' })}>

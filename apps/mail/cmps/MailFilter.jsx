@@ -4,6 +4,7 @@ export function MailFilter({ onSetFilter }) {
     const [filterBy, setFilterBy] = useState({
         txt: '',
         isRead: 'all',
+        sortBy: '',
     })
 
     function handleChange({ target }) {
@@ -37,6 +38,17 @@ export function MailFilter({ onSetFilter }) {
                 <option value="read">Read</option>
                 <option value="unread">Unread</option>
             </select>
+
+            <select
+                name="sortBy"
+                value={filterBy.sortBy}
+                onChange={handleChange}
+            >
+                <option value="">Sort by</option>
+                <option value="date">Date</option>
+                <option value="subject">Subject</option>
+            </select>
+
         </section>
     )
 }

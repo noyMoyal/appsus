@@ -12,9 +12,11 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
     const [selectedMail, setSelectedMail] = useState(null)
     const [isComposeOpen, setIsComposeOpen] = useState(false)
+    const [unreadCount, setUnreadCount] = useState(0)
 
     useEffect(() => {
         loadMails()
+        loadUnreadCount()
     }, [filterBy])
 
     function loadMails() {
@@ -47,6 +49,7 @@ export function MailIndex() {
             .then(savedMail => {
                 setSelectedMail(savedMail)
                 loadMails()
+                loadUnreadCount()
             })
             .catch(err => {
                 console.log('Cannot update mail:', err)
@@ -61,6 +64,7 @@ export function MailIndex() {
         mailService.remove(mailId)
             .then(() => {
                 loadMails()
+                loadUnreadCount()
             })
             .catch(err => {
                 console.log('Cannot remove mail:', err)
@@ -74,6 +78,14 @@ export function MailIndex() {
     function onCloseCompose() {
         setIsComposeOpen(false)
         loadMails()
+    }
+
+    function loadUnreadCount() {
+        mailService.getUnreadCount()
+            .then(count => setUnreadCount(count))
+            .catch(err => {
+                console.log('Cannot load unread count:', err)
+            })
     }
 
     if (!mails) return <div>Loading...</div>
@@ -92,13 +104,18 @@ export function MailIndex() {
                 <MailCompose onClose={onCloseCompose} />
             )}
 
-            <MailFolderList onSetFilter={onSetFilter} />
+            <MailFolderList
+                onSetFilter={onSetFilter}
+                unreadCount={unreadCount}
+            />
+
+            <MailFilter onSetFilter={onSetFilter} />
+
             <MailList
                 mails={mails}
                 onSelectMail={onSelectMail}
                 onRemoveMail={onRemoveMail}
             />
-            <MailFilter onSetFilter={onSetFilter} />
 
         </section>
     )

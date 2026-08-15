@@ -6,6 +6,7 @@ export const mailService = {
     save,
     remove,
     add,
+    getUnreadCount,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -65,24 +66,6 @@ function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.status === 'inbox') {
-                mails = mails.filter(mail => mail.to === loggedinUser.email)
-            }
-
-            if (filterBy.status === 'sent') {
-                mails = mails.filter(mail => mail.from === loggedinUser.email)
-            }
-
-            if (filterBy.txt) {
-                const regex = new RegExp(filterBy.txt, 'i')
-
-                mails = mails.filter(mail =>
-                    regex.test(mail.subject) ||
-                    regex.test(mail.body) ||
-                    regex.test(mail.from)
-                )
-            }
-
-            if (filterBy.status === 'inbox') {
                 mails = mails.filter(mail =>
                     mail.to === loggedinUser.email &&
                     !mail.removedAt
@@ -98,6 +81,36 @@ function query(filterBy = {}) {
 
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
+            }
+
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+
+                mails = mails.filter(mail =>
+                    regex.test(mail.subject) ||
+                    regex.test(mail.body) ||
+                    regex.test(mail.from)
+                )
+            }
+
+            if (filterBy.isRead === 'read') {
+                mails = mails.filter(mail => mail.isRead)
+            }
+
+            if (filterBy.isRead === 'unread') {
+                mails = mails.filter(mail => !mail.isRead)
+            }
+
+            if (filterBy.sortBy === 'date') {
+                mails.sort((mail1, mail2) =>
+                    mail2.sentAt - mail1.sentAt
+                )
+            }
+
+            if (filterBy.sortBy === 'subject') {
+                mails.sort((mail1, mail2) =>
+                    mail1.subject.localeCompare(mail2.subject)
+                )
             }
 
             return mails
@@ -135,4 +148,15 @@ function add(mail) {
     }
 
     return storageService.post(MAIL_KEY, mailToSave)
+}
+
+function getUnreadCount() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            return mails.filter(mail =>
+                mail.to === loggedinUser.email &&
+                !mail.isRead &&
+                !mail.removedAt
+            ).length
+        })
 }
