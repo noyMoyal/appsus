@@ -7,6 +7,7 @@ export const mailService = {
     remove,
     add,
     getUnreadCount,
+    getAdjacentMailId,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -158,5 +159,15 @@ function getUnreadCount() {
                 !mail.isRead &&
                 !mail.removedAt
             ).length
+        })
+}
+
+function getAdjacentMailId(mailId, diff) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            const mailIdx = mails.findIndex(mail => mail.id === mailId)
+            const adjacentMail = mails[mailIdx + diff]
+
+            return adjacentMail ? adjacentMail.id : null
         })
 }

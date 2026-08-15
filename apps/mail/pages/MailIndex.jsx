@@ -1,18 +1,18 @@
 const { useEffect, useState } = React
+const { useNavigate } = ReactRouterDOM
 
 import { mailService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
 import { MailFolderList } from '../cmps/MailFolderList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
-import { MailDetails } from './MailDetails.jsx'
 import { MailCompose } from '../cmps/MailCompose.jsx'
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
-    const [selectedMail, setSelectedMail] = useState(null)
     const [isComposeOpen, setIsComposeOpen] = useState(false)
     const [unreadCount, setUnreadCount] = useState(0)
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadMails()
@@ -34,31 +34,9 @@ export function MailIndex() {
         }))
     }
 
-    function onSelectMail(mail) {
-        if (mail.isRead) {
-            setSelectedMail(mail)
-            return
-        }
-
-        const mailToSave = {
-            ...mail,
-            isRead: true,
-        }
-
-        mailService.save(mailToSave)
-            .then(savedMail => {
-                setSelectedMail(savedMail)
-                loadMails()
-                loadUnreadCount()
-            })
-            .catch(err => {
-                console.log('Cannot update mail:', err)
-            })
-    }
-
-    function onBack() {
-        setSelectedMail(null)
-    }
+function onSelectMail(mail) {
+    navigate(`/mail/${mail.id}`)
+}
 
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
@@ -89,10 +67,6 @@ export function MailIndex() {
     }
 
     if (!mails) return <div>Loading...</div>
-
-    if (selectedMail) {
-        return <MailDetails mail={selectedMail} onBack={onBack} />
-    }
 
     return (
         <section className="mail-index">
