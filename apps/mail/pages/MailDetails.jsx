@@ -46,6 +46,13 @@ export function MailDetails() {
         navigate('/mail')
     }
 
+    function onSaveAsNote() {
+        const title = encodeURIComponent(mail.subject)
+        const txt = encodeURIComponent(mail.body)
+
+        navigate(`/note?title=${title}&txt=${txt}`)
+    }
+
     if (!mail) return <div>Loading...</div>
 
     return (
@@ -63,6 +70,10 @@ export function MailDetails() {
                     Next
                 </button>
             )}
+
+            <button onClick={onSaveAsNote}>
+                Save as note
+            </button>
 
             <h2>{mail.subject}</h2>
 
