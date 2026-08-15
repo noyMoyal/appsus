@@ -52,6 +52,16 @@ export function MailDetails() {
 
         navigate(`/note?title=${title}&txt=${txt}`)
     }
+    
+    function onRemoveMail() {
+        mailService.remove(mailId)
+            .then(() => {
+                navigate('/mail')
+            })
+            .catch(err => {
+                console.log('Cannot remove mail:', err)
+            })
+    }
 
     if (!mail) return <div>Loading...</div>
 
@@ -73,6 +83,10 @@ export function MailDetails() {
 
             <button onClick={onSaveAsNote}>
                 Save as note
+            </button>
+
+            <button onClick={onRemoveMail}>
+                Delete
             </button>
 
             <h2>{mail.subject}</h2>

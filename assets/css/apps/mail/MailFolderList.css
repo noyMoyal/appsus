@@ -1,0 +1,17 @@
+.mail-folder-list {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mail-folder-list button {
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 18px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.mail-folder-list button:hover {
+    background-color: #e7e8ea;
+}

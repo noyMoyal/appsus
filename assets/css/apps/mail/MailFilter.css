@@ -1,0 +1,16 @@
+.mail-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mail-filter input,
+.mail-filter select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.mail-filter input {
+    width: 300px;
+}

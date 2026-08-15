@@ -1,0 +1,34 @@
+.mail-compose {
+    max-width: 600px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mail-compose h2 {
+    margin-bottom: 15px;
+}
+
+.mail-compose input,
+.mail-compose textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.mail-compose textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.mail-compose button {
+    margin-inline-end: 8px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}

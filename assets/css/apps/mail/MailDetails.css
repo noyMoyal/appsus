@@ -1,0 +1,24 @@
+.mail-details {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.mail-details button {
+    margin-inline-end: 8px;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mail-details h2 {
+    margin-bottom: 20px;
+}
+
+.mail-details p {
+    margin-bottom: 12px;
+}

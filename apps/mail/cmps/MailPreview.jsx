@@ -6,7 +6,7 @@ export function MailPreview({ mail, onSelectMail, onRemoveMail }) {
 
     return (
         <article
-            className="mail-preview"
+            className={`mail-preview ${mail.isRead ? 'read' : 'unread'}`}
             onClick={() => onSelectMail(mail)}
         >
             <h3>{mail.subject}</h3>
