@@ -38,11 +38,25 @@ export function NoteIndex() {
       .catch((err) => showErrorMsg("Cannot add note"))
   }
 
+  function onUpdateNote(noteToSave) {
+    noteService
+      .save(noteToSave)
+      .then(() => {
+        loadNotes()
+        showSuccessMsg("Note updated")
+      })
+      .catch((err) => showErrorMsg("Cannot update note"))
+  }
+
   if (!notes) return <div>Loading...</div>
   return (
     <section className="container">
       <NoteAdd onAddNote={onAddNote} />
-      <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+      <NoteList
+        notes={notes}
+        onRemoveNote={onRemoveNote}
+        onUpdateNote={onUpdateNote}
+      />
     </section>
   )
 }
