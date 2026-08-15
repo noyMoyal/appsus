@@ -12,6 +12,11 @@ export function MailFolderList({ onSetFilter, unreadCount }) {
             <button onClick={() => onSetFilter({ status: 'trash' })}>
                 Trash
             </button>
+
+            <button onClick={() => onSetFilter({ status: 'draft' })}>
+                Drafts
+            </button>
+
         </nav>
     )
 }

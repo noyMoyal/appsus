@@ -28,6 +28,21 @@ export function MailCompose({ onClose }) {
             })
     }
 
+    function onSaveDraft() {
+        if (!mail.to && !mail.subject && !mail.body) {
+            onClose()
+            return
+        }
+
+        mailService.saveDraft(mail)
+            .then(() => {
+                onClose()
+            })
+            .catch(err => {
+                console.log('Cannot save draft:', err)
+            })
+    }
+
     return (
         <section className="mail-compose">
             <h2>New Message</h2>
@@ -56,7 +71,7 @@ export function MailCompose({ onClose }) {
             />
 
             <button onClick={onSendMail}>Send</button>
-            <button onClick={onClose}>Cancel</button>
+            <button onClick={onSaveDraft}>Cancel</button>
         </section>
     )
 }

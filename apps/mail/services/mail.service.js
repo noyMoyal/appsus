@@ -8,6 +8,7 @@ export const mailService = {
     add,
     getUnreadCount,
     getAdjacentMailId,
+    saveDraft,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -82,6 +83,14 @@ function query(filterBy = {}) {
 
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
+            }
+
+            if (filterBy.status === 'draft') {
+                mails = mails.filter(mail =>
+                    mail.from === loggedinUser.email &&
+                    !mail.sentAt &&
+                    !mail.removedAt
+                )
             }
 
             if (filterBy.txt) {
@@ -170,4 +179,17 @@ function getAdjacentMailId(mailId, diff) {
 
             return adjacentMail ? adjacentMail.id : null
         })
+}
+
+function saveDraft(mail) {
+    const draftToSave = {
+        ...mail,
+        createdAt: Date.now(),
+        isRead: true,
+        sentAt: null,
+        removedAt: null,
+        from: loggedinUser.email,
+    }
+
+    return storageService.post(MAIL_KEY, draftToSave)
 }
