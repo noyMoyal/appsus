@@ -1,1 +1,7 @@
 /* note preview */
+
+.note-preview {
+    padding: 1em;
+    border-radius: 8px;
+    min-height: 60px;
+    }
