@@ -2,15 +2,15 @@ const { useState } = React
 
 import { NoteTxt } from "./NoteTxt.jsx"
 
-export function NotePreview({ note, onUpdateNote }) {
+export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
   const [isEditMode, setIsEditMode] = useState(false)
   const [noteToEdit, setNoteToEdit] = useState(note)
 
   console.log("NotePreview render, isEditMode:", isEditMode)
 
   function onToggleEdit() {
-     if (isEditMode) {
-        onUpdateNote(noteToEdit)
+    if (isEditMode) {
+      onUpdateNote(noteToEdit)
     }
     setIsEditMode((prev) => !prev)
   }
@@ -31,7 +31,15 @@ export function NotePreview({ note, onUpdateNote }) {
         onChangeInfo={onChangeInfo}
       />
 
-      <button onClick={onToggleEdit}>{isEditMode ? "Save" : "Edit"}</button>
+      <div className="actions" role="toolbar">
+        <button onClick={onToggleEdit} aria-label="Edit note">
+          {isEditMode ? "Save" : "Edit"}
+        </button>
+
+        <button onClick={() => onRemoveNote(note.id)} aria-label="Delete note">
+          Delete
+        </button>
+      </div>
     </article>
   )
 }
