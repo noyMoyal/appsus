@@ -1,1 +1,14 @@
  /* note list */
+
+ .note-list ul {
+    columns: auto 250px;
+    column-gap: 1em;
+
+    padding: 0;
+    list-style: none;
+}
+
+.note-list li {
+    break-inside: avoid;
+    margin-block-end: 1em;
+}
