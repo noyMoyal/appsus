@@ -21,3 +21,9 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    color: var(--text-color);
+}

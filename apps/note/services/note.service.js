@@ -54,7 +54,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#fff8b8'
                 },
                 info: {
                     txt: 'Buy milk, coffee and something sweet'
@@ -66,7 +66,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: false,
                 style: {
-                    backgroundColor: '#0d0'
+                    backgroundColor: '#b4ddd3'
                 },
                 info: {
                     txt: 'Call mom back. Seriously this time.'
@@ -78,7 +78,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: false,
                 style: {
-                    backgroundColor: '#d00'
+                    backgroundColor: '#f6e2dd'
                 },
                 info: {
                     txt: 'Big plans for the weekend: sleep in, finally watch that series everyone keeps talking about, maybe go to the beach if it is not too hot, and definitely not think about code even once'
