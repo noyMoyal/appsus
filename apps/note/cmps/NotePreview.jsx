@@ -24,7 +24,7 @@ export function NotePreview({ note, onUpdateNote }) {
     }))
   }
   return (
-    <article className="note-preview">
+    <article className="note-preview" style={note.style}>
       <NoteTxt
         info={noteToEdit.info}
         isEditMode={isEditMode}
