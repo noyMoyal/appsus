@@ -5,6 +5,7 @@ export const mailService = {
     getById,
     save,
     remove,
+    removeForever,
     add,
     getUnreadCount,
     getAdjacentMailId,
@@ -192,4 +193,8 @@ function saveDraft(mail) {
     }
 
     return storageService.post(MAIL_KEY, draftToSave)
+}
+
+function removeForever(mailId) {
+    return storageService.remove(MAIL_KEY, mailId)
 }

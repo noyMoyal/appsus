@@ -13,8 +13,8 @@
 
 .mail-preview:hover {
     box-shadow: inset 0 -1px 0 #dadce0,
-                inset 0 1px 0 #dadce0,
-                0 1px 2px rgba(60, 64, 67, 0.3);
+        inset 0 1px 0 #dadce0,
+        0 1px 2px rgba(60, 64, 67, 0.3);
 }
 
 .mail-preview h3,
@@ -24,6 +24,9 @@
 
 .mail-preview h3 {
     font-size: 0.95rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .mail-preview p {
@@ -53,3 +56,4 @@
     background-color: #f2f6fc;
     font-weight: 400;
 }
+

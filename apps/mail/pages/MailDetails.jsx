@@ -1,5 +1,5 @@
 const { useEffect, useState } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams, useNavigate, useSearchParams } = ReactRouterDOM
 
 import { mailService } from '../services/mail.service.js'
 
@@ -9,6 +9,8 @@ export function MailDetails() {
     const [prevMailId, setPrevMailId] = useState(null)
     const { mailId } = useParams()
     const navigate = useNavigate()
+    const [searchParams] = useSearchParams()
+    const status = searchParams.get('status')
 
     useEffect(() => {
         loadMail()
@@ -52,9 +54,13 @@ export function MailDetails() {
 
         navigate(`/note?title=${title}&txt=${txt}`)
     }
-    
+
     function onRemoveMail() {
-        mailService.remove(mailId)
+        const removePromise = status === 'trash'
+            ? mailService.removeForever(mailId)
+            : mailService.remove(mailId)
+
+        removePromise
             .then(() => {
                 navigate('/mail')
             })

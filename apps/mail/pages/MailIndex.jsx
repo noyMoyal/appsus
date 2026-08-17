@@ -34,12 +34,16 @@ export function MailIndex() {
         }))
     }
 
-function onSelectMail(mail) {
-    navigate(`/mail/${mail.id}`)
-}
+    function onSelectMail(mail) {
+        navigate(`/mail/${mail.id}?status=${filterBy.status}`)
+    }
 
     function onRemoveMail(mailId) {
-        mailService.remove(mailId)
+        const removePromise = filterBy.status === 'trash'
+            ? mailService.removeForever(mailId)
+            : mailService.remove(mailId)
+
+        removePromise
             .then(() => {
                 loadMails()
                 loadUnreadCount()
