@@ -22,3 +22,13 @@
 .mail-index > button:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 740px) {
+    .mail-index {
+        padding: 10px;
+    }
+
+    .mail-index h1 {
+        font-size: 1.5rem;
+    }
+}

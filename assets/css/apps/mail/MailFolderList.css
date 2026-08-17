@@ -10,8 +10,15 @@
     border-radius: 18px;
     background-color: transparent;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .mail-folder-list button:hover {
     background-color: #e7e8ea;
+}
+
+@media (max-width: 740px) {
+    .mail-folder-list {
+        flex-wrap: wrap;
+    }
 }

@@ -32,3 +32,18 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media (max-width: 740px) {
+    .mail-compose {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .mail-compose input,
+    .mail-compose textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

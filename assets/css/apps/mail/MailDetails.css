@@ -22,3 +22,22 @@
 .mail-details p {
     margin-bottom: 12px;
 }
+
+@media (max-width: 740px) {
+    .mail-details {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .mail-details button {
+        margin-bottom: 8px;
+    }
+
+    .mail-details h2 {
+        word-break: break-word;
+    }
+
+    .mail-details p {
+        overflow-wrap: break-word;
+    }
+}
