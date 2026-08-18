@@ -1,0 +1,49 @@
+/* note preview */
+
+.note-preview {
+    padding: 1em;
+    border-radius: 8px;
+    min-height: 60px;
+    }
+.note-preview .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5em;
+
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.note-preview:hover .actions {
+    opacity: 1;
+}
+
+.note-preview .actions button {
+    border: none;
+    background-color: transparent;
+    padding: 0.4em 0.6em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.note-preview .actions button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.note-preview textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 4em;
+
+    font-family: inherit;
+    font-size: inherit;
+
+    border: none;
+    background-color: transparent;
+    resize: vertical;
+}
+
+.note-preview textarea:focus {
+    outline: none;
+}
