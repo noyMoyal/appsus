@@ -40,6 +40,10 @@ export function NotePreview({
     setIsColorPickerShown((prev) => !prev)
   }
 
+  function onTogglePin() {
+    onUpdateNote({ ...note, isPinned: !note.isPinned })
+  }
+
   return (
     <article className="note-preview" style={note.style}>
       <NoteTxt
@@ -61,6 +65,13 @@ export function NotePreview({
           aria-label="Duplicate note"
         >
           Duplicate
+        </button>
+
+        <button
+          onClick={onTogglePin}
+          aria-label={note.isPinned ? "Unpin note" : "Pin note"}
+        >
+          <i className="fa-solid fa-thumbtack"></i>
         </button>
         <button onClick={onToggleColorPicker} aria-label="Change color">
           <i className="fa-solid fa-palette"></i>
