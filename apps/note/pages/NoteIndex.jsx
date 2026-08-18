@@ -37,6 +37,22 @@ export function NoteIndex() {
       })
       .catch((err) => showErrorMsg("Cannot add note"))
   }
+  function onDuplicateNote(note) {
+    const noteToDuplicate = {
+      ...note,
+      id: undefined,
+      createdAt: Date.now(),
+      style: { ...note.style },
+      info: { ...note.info },
+    }
+    noteService
+      .save(noteToDuplicate)
+      .then((savedNote) => {
+        setNotes((prevNotes) => [savedNote, ...prevNotes])
+        showSuccessMsg("Note duplicated")
+      })
+      .catch((err) => showErrorMsg("Cannot duplicate note"))
+  }
 
   function onUpdateNote(noteToSave) {
     noteService
