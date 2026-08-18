@@ -47,3 +47,7 @@
 .note-preview textarea:focus {
     outline: none;
 }
+
+.note-preview p {
+    white-space: pre-line;
+}

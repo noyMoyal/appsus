@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { useSearchParams } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
@@ -9,10 +10,34 @@ import {
 } from "../../../services/event-bus.service.js"
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const title = searchParams.get('title')
+  const txt = searchParams.get('txt')
 
   useEffect(() => {
     loadNotes()
   }, [])
+
+  useEffect(() => {
+    if (!notes) return
+    if (!title && !txt) return
+
+    const noteTxt = `${title || ''}\n${txt || ''}`.trim()
+    const note = noteService.getEmptyNote(noteTxt)
+    
+    note.style.backgroundColor = '#fff8b8'
+
+    noteService.save(note)
+      .then(savedNote => {
+        setNotes(prevNotes => [savedNote, ...prevNotes])
+        showSuccessMsg('Note added from mail')
+        setSearchParams({})
+      })
+      .catch(err => {
+        showErrorMsg('Cannot add note from mail')
+      })
+  }, [title, txt, notes])
 
   function loadNotes() {
     noteService.query().then(setNotes)
