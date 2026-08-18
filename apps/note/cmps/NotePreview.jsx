@@ -54,17 +54,17 @@ export function NotePreview({
 
       <div className="actions" role="toolbar">
         <button onClick={onToggleEdit} aria-label="Edit note">
-          {isEditMode ? "Save" : "Edit"}
+          {isEditMode ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-pen"></i>}
         </button>
 
         <button onClick={() => onRemoveNote(note.id)} aria-label="Delete note">
-          Delete
+          <i className="fa-solid fa-trash"></i>
         </button>
         <button
           onClick={() => onDuplicateNote(note)}
           aria-label="Duplicate note"
         >
-          Duplicate
+         <i className="fa-solid fa-copy"></i>
         </button>
 
         <button
