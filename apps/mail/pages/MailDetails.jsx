@@ -2,7 +2,10 @@ const { useEffect, useState } = React
 const { useParams, useNavigate, useSearchParams } = ReactRouterDOM
 
 import { mailService } from '../services/mail.service.js'
-
+import {
+    showSuccessMsg,
+    showErrorMsg,
+} from '../../../services/event-bus.service.js'
 export function MailDetails() {
     const [mail, setMail] = useState(null)
     const [nextMailId, setNextMailId] = useState(null)
@@ -56,16 +59,22 @@ export function MailDetails() {
     }
 
     function onRemoveMail() {
-        const removePromise = status === 'trash'
+        const isTrash = status === 'trash'
+
+        const removePromise = isTrash
             ? mailService.removeForever(mailId)
             : mailService.remove(mailId)
 
         removePromise
             .then(() => {
+                showSuccessMsg(
+                    isTrash ? 'Mail deleted' : 'Mail moved to trash'
+                )
                 navigate('/mail')
             })
             .catch(err => {
                 console.log('Cannot remove mail:', err)
+                showErrorMsg('Cannot delete mail')
             })
     }
 

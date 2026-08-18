@@ -1,6 +1,10 @@
 const { useState } = React
 
 import { mailService } from '../services/mail.service.js'
+import {
+    showSuccessMsg,
+    showErrorMsg,
+} from '../../../services/event-bus.service.js'
 
 export function MailCompose({ onClose }) {
     const [mail, setMail] = useState({
@@ -21,10 +25,11 @@ export function MailCompose({ onClose }) {
     function onSendMail() {
         mailService.add(mail)
             .then(() => {
+                showSuccessMsg('Mail sent')
                 onClose()
             })
             .catch(err => {
-                console.log('Cannot send mail:', err)
+                showErrorMsg('Cannot send mail')
             })
     }
 
@@ -36,10 +41,11 @@ export function MailCompose({ onClose }) {
 
         mailService.saveDraft(mail)
             .then(() => {
+                showSuccessMsg('Draft saved')
                 onClose()
             })
             .catch(err => {
-                console.log('Cannot save draft:', err)
+                showErrorMsg('Cannot save draft')
             })
     }
 

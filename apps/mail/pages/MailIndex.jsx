@@ -6,6 +6,10 @@ import { MailList } from '../cmps/MailList.jsx'
 import { MailFolderList } from '../cmps/MailFolderList.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailCompose } from '../cmps/MailCompose.jsx'
+import {
+    showSuccessMsg,
+    showErrorMsg,
+} from '../../../services/event-bus.service.js'
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
@@ -39,7 +43,9 @@ export function MailIndex() {
     }
 
     function onRemoveMail(mailId) {
-        const removePromise = filterBy.status === 'trash'
+        const isTrash = filterBy.status === 'trash'
+
+        const removePromise = isTrash
             ? mailService.removeForever(mailId)
             : mailService.remove(mailId)
 
@@ -47,9 +53,14 @@ export function MailIndex() {
             .then(() => {
                 loadMails()
                 loadUnreadCount()
+
+                showSuccessMsg(
+                    isTrash ? 'Mail deleted' : 'Mail moved to trash'
+                )
             })
             .catch(err => {
                 console.log('Cannot remove mail:', err)
+                showErrorMsg('Cannot delete mail')
             })
     }
 
