@@ -2,7 +2,14 @@ const { useState } = React
 
 import { NoteTxt } from "./NoteTxt.jsx"
 
-export function NotePreview({ note, onUpdateNote, onRemoveNote, onDuplicateNote }) {
+import { ColorPicker } from "./ColorPicker.jsx"
+
+export function NotePreview({
+  note,
+  onUpdateNote,
+  onRemoveNote,
+  onDuplicateNote,
+}) {
   const [isEditMode, setIsEditMode] = useState(false)
   const [noteToEdit, setNoteToEdit] = useState(note)
 
@@ -23,6 +30,11 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, onDuplicateNote 
       info: { ...prev.info, [name]: value },
     }))
   }
+
+  function onSetStyle(style) {
+    onUpdateNote({ ...note, style })
+  }
+
   return (
     <article className="note-preview" style={note.style}>
       <NoteTxt
@@ -39,11 +51,15 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, onDuplicateNote 
         <button onClick={() => onRemoveNote(note.id)} aria-label="Delete note">
           Delete
         </button>
-        <button onClick={() => onDuplicateNote(note)} aria-label="Duplicate note">
+        <button
+          onClick={() => onDuplicateNote(note)}
+          aria-label="Duplicate note"
+        >
           Duplicate
-
         </button>
+
       </div>
+        <ColorPicker onSetStyle={onSetStyle} />
     </article>
   )
 }

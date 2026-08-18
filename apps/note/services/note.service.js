@@ -42,7 +42,7 @@ function getEmptyNote(txt = '') {
         }
     }
 }
-
+// Private functions
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
 

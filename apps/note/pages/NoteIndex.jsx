@@ -40,8 +40,10 @@ export function NoteIndex() {
   function onDuplicateNote(note) {
     const noteToDuplicate = {
       ...note,
+      // no id, so save() creates a new note instead of overwriting
       id: undefined,
       createdAt: Date.now(),
+      // separate copies, so editing one note won't change the other
       style: { ...note.style },
       info: { ...note.info },
     }
