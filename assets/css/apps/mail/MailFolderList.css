@@ -5,16 +5,22 @@
 }
 
 .mail-folder-list button {
-    padding: 8px 16px;
+    padding: 9px 18px;
     border: 0;
-    border-radius: 18px;
+    border-radius: 20px;
     background-color: transparent;
     cursor: pointer;
     white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .mail-folder-list button:hover {
-    background-color: #e7e8ea;
+    background-color: #e7eef5;
+}
+
+.mail-folder-list button.active {
+    background-color: #c2e7ff;
+    font-weight: 700;
 }
 
 @media (max-width: 740px) {

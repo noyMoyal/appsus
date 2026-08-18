@@ -96,6 +96,7 @@ export function MailIndex() {
             <MailFolderList
                 onSetFilter={onSetFilter}
                 unreadCount={unreadCount}
+                activeStatus={filterBy.status}
             />
 
             <MailFilter onSetFilter={onSetFilter} />

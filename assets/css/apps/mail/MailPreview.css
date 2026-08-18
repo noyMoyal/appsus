@@ -45,7 +45,8 @@
 }
 
 .mail-preview button:hover {
-    background-color: #e2e5e9;
+    background-color: #fce8e6;
+    color: #d93025;
 }
 
 .mail-preview.unread {

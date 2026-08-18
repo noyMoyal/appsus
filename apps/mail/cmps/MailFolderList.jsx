@@ -1,22 +1,33 @@
-export function MailFolderList({ onSetFilter, unreadCount }) {
+export function MailFolderList({ onSetFilter, unreadCount, activeStatus }) {
     return (
         <nav className="mail-folder-list">
-            <button onClick={() => onSetFilter({ status: 'inbox' })}>
+            <button
+                className={activeStatus === 'inbox' ? 'active' : ''}
+                onClick={() => onSetFilter({ status: 'inbox' })}
+            >
                 Inbox ({unreadCount})
             </button>
 
-            <button onClick={() => onSetFilter({ status: 'sent' })}>
+            <button
+                className={activeStatus === 'sent' ? 'active' : ''}
+                onClick={() => onSetFilter({ status: 'sent' })}
+            >
                 Sent
             </button>
 
-            <button onClick={() => onSetFilter({ status: 'trash' })}>
+            <button
+                className={activeStatus === 'trash' ? 'active' : ''}
+                onClick={() => onSetFilter({ status: 'trash' })}
+            >
                 Trash
             </button>
 
-            <button onClick={() => onSetFilter({ status: 'draft' })}>
+            <button
+                className={activeStatus === 'draft' ? 'active' : ''}
+                onClick={() => onSetFilter({ status: 'draft' })}
+            >
                 Drafts
             </button>
-
         </nav>
     )
 }
