@@ -12,6 +12,7 @@ export function NotePreview({
 }) {
   const [isEditMode, setIsEditMode] = useState(false)
   const [noteToEdit, setNoteToEdit] = useState(note)
+  const [isColorPickerShown, setIsColorPickerShown] = useState(false)
 
   console.log("NotePreview render, isEditMode:", isEditMode)
 
@@ -33,6 +34,10 @@ export function NotePreview({
 
   function onSetStyle(style) {
     onUpdateNote({ ...note, style })
+  }
+
+  function onToggleColorPicker() {
+    setIsColorPickerShown((prev) => !prev)
   }
 
   return (
@@ -57,9 +62,11 @@ export function NotePreview({
         >
           Duplicate
         </button>
-
+        <button onClick={onToggleColorPicker} aria-label="Change color">
+          <i className="fa-solid fa-palette"></i>
+        </button>
       </div>
-        <ColorPicker onSetStyle={onSetStyle} />
+      {isColorPickerShown && <ColorPicker onSetStyle={onSetStyle} />}
     </article>
   )
 }
