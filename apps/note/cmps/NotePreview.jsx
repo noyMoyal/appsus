@@ -2,7 +2,7 @@ const { useState } = React
 
 import { NoteTxt } from "./NoteTxt.jsx"
 
-export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
+export function NotePreview({ note, onUpdateNote, onRemoveNote, onDuplicateNote }) {
   const [isEditMode, setIsEditMode] = useState(false)
   const [noteToEdit, setNoteToEdit] = useState(note)
 
@@ -38,6 +38,10 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
 
         <button onClick={() => onRemoveNote(note.id)} aria-label="Delete note">
           Delete
+        </button>
+        <button onClick={() => onDuplicateNote(note)} aria-label="Duplicate note">
+          Duplicate
+
         </button>
       </div>
     </article>

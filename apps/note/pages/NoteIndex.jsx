@@ -72,6 +72,7 @@ export function NoteIndex() {
         notes={notes}
         onRemoveNote={onRemoveNote}
         onUpdateNote={onUpdateNote}
+        onDuplicateNote={onDuplicateNote}
       />
     </section>
   )
