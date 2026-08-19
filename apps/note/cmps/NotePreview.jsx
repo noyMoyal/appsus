@@ -1,7 +1,6 @@
 const { useState } = React
 
-import { NoteTxt } from "./NoteTxt.jsx"
-
+import { DynamicCmp } from "./DynamicCmp.jsx"
 import { ColorPicker } from "./ColorPicker.jsx"
 
 export function NotePreview({
@@ -46,7 +45,8 @@ export function NotePreview({
 
   return (
     <article className="note-preview" style={note.style}>
-      <NoteTxt
+      <DynamicCmp
+        cmpType={note.type}
         info={noteToEdit.info}
         isEditMode={isEditMode}
         onChangeInfo={onChangeInfo}
@@ -54,7 +54,11 @@ export function NotePreview({
 
       <div className="actions" role="toolbar">
         <button onClick={onToggleEdit} aria-label="Edit note">
-          {isEditMode ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-pen"></i>}
+          {isEditMode ? (
+            <i className="fa-solid fa-check"></i>
+          ) : (
+            <i className="fa-solid fa-pen"></i>
+          )}
         </button>
 
         <button onClick={() => onRemoveNote(note.id)} aria-label="Delete note">
@@ -64,7 +68,7 @@ export function NotePreview({
           onClick={() => onDuplicateNote(note)}
           aria-label="Duplicate note"
         >
-         <i className="fa-solid fa-copy"></i>
+          <i className="fa-solid fa-copy"></i>
         </button>
 
         <button

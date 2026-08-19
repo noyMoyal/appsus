@@ -83,9 +83,52 @@ function _createNotes() {
                 info: {
                     txt: 'Big plans for the weekend: sleep in, finally watch that series everyone keeps talking about, maybe go to the beach if it is not too hot, and definitely not think about code even once'
                 }
-            }
-        ]
 
-        utilService.saveToStorage(NOTE_KEY, notes)
-    }
+            },
+
+            {
+                id: 'n104',
+                createdAt: 1112225,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#d3bfdb'
+                },
+                info: {
+                    url: 'https://images.unsplash.com/photo-1786658054420-bbdcd866c2b9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    title: 'WOWWW'
+                }
+            },
+            {
+                id: 'n105',
+                createdAt: 1112226,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#aeccdc'
+                },
+                info: {
+                    url: 'https://plus.unsplash.com/premium_photo-1787081510925-be51987ddba3?q=80&w=1475&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    title: 'Me and my code after the sprint'
+                }
+
+            },
+            {
+                id: 'n106',
+                createdAt: 1112227,
+                type: 'NoteVideo',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#e2f6d3'
+                },
+                info: {
+                    url: 'https://www.youtube.com/embed/Ix5bViBnFDo',
+                   title: "It's not a bug, it's a feature",
+                }
+            }
+            
+       ]
+
+    utilService.saveToStorage(NOTE_KEY, notes)
 }
+    }
