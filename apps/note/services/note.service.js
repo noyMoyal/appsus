@@ -123,12 +123,29 @@ function _createNotes() {
                 },
                 info: {
                     url: 'https://www.youtube.com/embed/Ix5bViBnFDo',
-                   title: "It's not a bug, it's a feature",
+                    title: "It's not a bug, it's a feature",
+                }
+            },
+            {
+                id: 'n107',
+                createdAt: 1112228,
+                type: 'NoteTodos',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#fff8b8'
+                },
+                info: {
+                    title: 'Before I go',
+                    todos: [
+                        { txt: 'Sleep', isDone: false },
+                        { txt: 'Fix the bug', isDone: false },
+                        { txt: 'Sleep', isDone: true }
+                    ]
                 }
             }
-            
-       ]
 
-    utilService.saveToStorage(NOTE_KEY, notes)
-}
+        ]
+
+        utilService.saveToStorage(NOTE_KEY, notes)
     }
+}
