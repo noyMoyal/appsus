@@ -25,6 +25,11 @@ export function NotePreview({
   function onChangeInfo({ target }) {
     const { name, value } = target
 
+    if (!isEditMode) {
+      onUpdateNote({ ...note, info: { ...note.info, [name]: value } })
+      return
+    }
+
     setNoteToEdit((prev) => ({
       ...prev,
       info: { ...prev.info, [name]: value },
@@ -47,7 +52,7 @@ export function NotePreview({
     <article className="note-preview" style={note.style}>
       <DynamicCmp
         cmpType={note.type}
-        info={noteToEdit.info}
+        info={isEditMode ? noteToEdit.info : note.info}
         isEditMode={isEditMode}
         onChangeInfo={onChangeInfo}
       />
