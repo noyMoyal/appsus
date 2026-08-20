@@ -14,7 +14,9 @@ export function BookDashboard() {
     if (!books) return <div>Loading...</div>
 
     const booksPerCategory = books.reduce((acc, book) => {
-        book.categories.forEach(category => {
+        const categories = book.categories || ['Other']
+
+        categories.forEach(category => {
             acc[category] = (acc[category] || 0) + 1
         })
 
