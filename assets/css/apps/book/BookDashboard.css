@@ -1,0 +1,58 @@
+.book-dashboard {
+    padding-block: 2em;
+}
+
+.book-dashboard h2 {
+    text-align: center;
+    color: var(--clr1);
+}
+
+.dashboard-chart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2em;
+
+    min-height: 320px;
+    padding: 2em;
+    margin-block-start: 2em;
+
+    background-color: var(--gray1);
+    border-radius: 12px;
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    height: 300px;
+}
+
+.chart-bar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 80px;
+    padding-block-start: .5em;
+
+    background-color: var(--clr1bg);
+    color: var(--gray3);
+    font-weight: bold;
+
+    border-radius: 6px 6px 0 0;
+
+    transition: .3s;
+}
+
+.chart-bar:hover {
+    background-color: var(--clr1);
+    color: white;
+}
+
+.chart-item p {
+    margin-block-start: .5em;
+    text-align: center;
+}

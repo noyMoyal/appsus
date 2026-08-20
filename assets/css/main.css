@@ -19,3 +19,9 @@
 @import './apps/mail/MailFolderList.css';
 @import './apps/mail/MailCompose.css';
 @import './apps/mail/MailDetails.css';
+
+@import './apps/book/BookList.css';
+@import './apps/book/BookPreview.css';
+@import './apps/book/BookFilter.css';
+@import './apps/book/book-details.css';
+@import './apps/book/BookDashboard.css';

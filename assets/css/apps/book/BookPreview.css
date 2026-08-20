@@ -1,0 +1,39 @@
+.book-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1.2em;
+
+    text-align: center;
+}
+
+.book-preview img {
+    width: 150px;
+    height: 210px;
+    object-fit: cover;
+
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.book-preview h3 {
+    margin-block: 1em .5em;
+    font-size: 1.1em;
+}
+
+.book-preview p {
+    margin: .4em 0;
+    font-weight: bold;
+}
+
+.book-preview span {
+    padding: .3em .7em;
+    margin-block-start: .5em;
+
+    background-color: var(--clr1bg);
+    color: var(--clr1);
+
+    border-radius: 1em;
+    font-weight: bold;
+}
