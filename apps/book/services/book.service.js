@@ -81,7 +81,14 @@ function save(book) {
     const bookToSave = {
         id: book.id || utilService.makeId(),
         title: book.title,
+        subtitle: book.subtitle || '',
+        authors: book.authors || [],
+        publishedDate: book.publishedDate || '',
+        description: book.description || '',
+        pageCount: book.pageCount || 0,
+        categories: book.categories || [],
         thumbnail: book.thumbnail || 'BooksImages/1.jpg',
+        language: book.language || 'en',
         listPrice: {
             amount: +book.price,
             currencyCode: 'EUR',

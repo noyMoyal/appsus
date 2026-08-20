@@ -1,31 +1,48 @@
 .book-filter {
-    margin-block: 1.5em;
-    padding: 1.5em;
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin: 20px 0;
+    padding: 18px;
 
     background-color: white;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .book-filter h2 {
-    margin-block-start: 0;
-    margin-block-end: 1em;
-
-    color: var(--clr1);
+    width: 100%;
+    margin: 0 0 4px;
 }
 
-.filter-fields {
-    display: grid;
-    grid-template-columns: auto minmax(180px, 1fr);
-    gap: .8em 1em;
-    align-items: center;
-}
-
-.filter-fields label {
+.book-filter label {
     font-weight: bold;
 }
 
-.filter-fields input {
-    width: 100%;
-    max-width: 320px;
+.book-filter input {
+    padding: 9px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 1em;
+}
+
+.book-filter input:focus {
+    outline: none;
+    border-color: #8aaee8;
+}
+
+@media (max-width: 740px) {
+    .book-filter {
+        align-items: stretch;
+    }
+
+    .book-filter input {
+        width: 100%;
+    }
 }

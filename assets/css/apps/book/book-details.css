@@ -1,188 +1,136 @@
 .book-details {
-    width: min(600px, 90%);
-    padding: 0;
-    border: none;
-    border-radius: 12px;
-}
-
-.book-details::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.book-details section {
-    padding: 2em;
-}
-
-.book-details h2,
-.book-details h3,
-.book-details h4 {
-    margin-top: 0;
-}
-
-.book-details img {
-    display: block;
-    width: 180px;
-    max-width: 100%;
-    margin: 1em auto;
-}
-
-.book-details p {
-    margin: 0.7em 0;
-}
-
-.book-details .expensive {
-    color: red;
-}
-
-.book-details .cheap {
-    color: green;
-}
-
-.book-details .on-sale {
-    color: orange;
-    font-weight: bold;
-}
-
-.book-details button {
-    margin-top: 1em;
-}
-
-
-.book-details {
     max-width: 900px;
-    margin: 2em auto;
-    padding: 2em;
+    margin: 30px auto;
+    padding: 28px;
 
     background-color: white;
+    border: 1px solid #e5e7eb;
     border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .book-details > h2 {
-    text-align: center;
-    margin-block-end: 1.5em;
-    color: var(--clr1);
+    margin-bottom: 24px;
+    font-size: 1.8em;
 }
 
 .book-details > h3 {
-    margin-block-end: .3em;
-    font-size: 1.6em;
+    margin-bottom: 6px;
+    font-size: 1.5em;
 }
 
 .book-details > h4 {
-    margin-block-start: 0;
-    color: var(--gray2);
+    margin-bottom: 20px;
+    color: #666;
     font-weight: normal;
 }
 
 .book-details > img {
     display: block;
 
-    width: 220px;
-    max-width: 100%;
+    width: 180px;
+    max-height: 260px;
+    object-fit: cover;
 
-    margin: 1.5em auto;
+    margin: 0 auto 24px;
 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-.book-details > p {
-    line-height: 1.6;
-}
-
-.book-details .expensive {
-    color: #c0392b;
-    font-weight: bold;
+.book-details p {
+    margin-bottom: 10px;
+    line-height: 1.5;
 }
 
 .book-details .cheap {
-    color: #238636;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.book-details .expensive {
+    color: #c62828;
     font-weight: bold;
 }
 
 .book-details .on-sale {
     display: inline-block;
 
-    padding: .4em .8em;
-    margin-block: .5em 1em;
+    padding: 5px 12px;
 
-    background-color: #ffe8a3;
+    background-color: #fff3cd;
     color: #805b00;
 
-    border-radius: 999px;
+    border-radius: 20px;
+
     font-weight: bold;
 }
 
-/* Add Review */
-
-.book-details form {
-    display: grid;
-    gap: .8em;
-
-    margin-block: 2em;
-    padding: 1.5em;
-
-    background-color: #f7f7f7;
-    border-radius: 10px;
-}
-
-.book-details form h3,
-.book-details form h4 {
-    margin: 0;
-}
-
-.book-details form input,
-.book-details form select {
-    max-width: 320px;
-}
-
-/* Reviews */
-
 .review-list {
-    margin-block: 2em;
-    padding-block-start: 1.5em;
+    margin: 25px 0;
+    padding-top: 20px;
 
     border-top: 1px solid #ddd;
 }
 
-.review-list > h3 {
-    margin-block-end: 1em;
-}
-
 .review-list article {
-    margin-block-end: 1em;
-    padding: 1em;
+    margin-bottom: 12px;
+    padding: 14px;
 
-    background-color: #f8f8f8;
-    border-left: 4px solid var(--clr1);
+    background-color: #f7f7f7;
     border-radius: 8px;
 }
 
-.review-list article p {
-    margin: .3em 0;
-}
+.review-list button {
+    padding: 6px 10px;
 
-.review-list article button {
-    margin-inline-start: 0;
-    background-color: #c95c5c;
-    color: white;
-}
+    border: 0;
+    border-radius: 5px;
 
-.review-list article button:hover {
-    background-color: #aa4141;
-}
+    background-color: #f8d7da;
 
-/* Navigation */
+    cursor: pointer;
+}
 
 .book-details > a {
     display: inline-block;
-    margin-block-start: 1.5em;
 
-    font-weight: bold;
+    margin-top: 20px;
+    padding: 8px 12px;
+
+    color: #333;
     text-decoration: none;
+
+    background-color: #f1f3f4;
+    border-radius: 6px;
+}
+
+.book-details > a:hover {
+    background-color: #e2e5e8;
 }
 
 .book-details > span {
-    margin-inline: .4em;
+    margin: 0 4px;
+    color: #bbb;
+}
+
+@media (max-width: 740px) {
+    .book-details {
+        margin: 12px;
+        padding: 18px;
+    }
+
+    .book-details > img {
+        width: 140px;
+    }
+
+    .book-details > a {
+        margin-top: 10px;
+    }
+
+    .book-details > span {
+        display: none;
+    }
 }

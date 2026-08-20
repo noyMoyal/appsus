@@ -75,7 +75,7 @@ export function BookDetails() {
                 alt={book.title}
             />
 
-            <p>Authors: {book.authors.join(', ')}</p>
+            <p>Authors: {(book.authors || []).join(', ') || 'Unknown'}</p>
 
             <p>Published: {book.publishedDate}</p>
             <p>{getBookAge(book.publishedDate)}</p>
@@ -83,8 +83,7 @@ export function BookDetails() {
             <p>Pages: {book.pageCount}</p>
             <p>{getReadingLength(book.pageCount)}</p>
 
-            <p>Categories: {book.categories.join(', ')}</p>
-
+            <p>Categories: {(book.categories || []).join(', ') || 'Other'}</p>
             <p>Language: {book.language}</p>
 
             <LongTxt txt={book.description} />

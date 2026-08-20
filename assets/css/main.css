@@ -25,3 +25,6 @@
 @import './apps/book/BookFilter.css';
 @import './apps/book/book-details.css';
 @import './apps/book/BookDashboard.css';
+@import './apps/book/BookIndex.css';
+@import './apps/book/BookForms.css';
+@import './apps/book/BookAdd.css';
