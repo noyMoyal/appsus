@@ -2,6 +2,7 @@ const { useState } = React
 
 import { noteService } from "../services/note.service.js"
 import { DynamicCmp } from "./DynamicCmp.jsx"
+import { ColorPicker } from "./ColorPicker.jsx"
 
 const TYPE_BUTTONS = [
   { type: "NoteTxt", icon: "fa-solid fa-font", label: "Text note" },
@@ -17,6 +18,7 @@ const TYPE_BUTTONS = [
 export function NoteAdd({ onAddNote }) {
   const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
   const [noteType, setNoteType] = useState("NoteTxt")
+  const [isColorPickerShown, setIsColorPickerShown] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
 
   function handleChange({ target }) {
@@ -32,6 +34,10 @@ export function NoteAdd({ onAddNote }) {
     setNoteType(type)
     setNoteToAdd(noteService.getEmptyNote(type))
     setIsExpanded(true)
+  }
+
+  function onSetStyle(style) {
+    setNoteToAdd((prev) => ({ ...prev, style }))
   }
 
   function onSubmitNote(ev) {
@@ -51,6 +57,7 @@ export function NoteAdd({ onAddNote }) {
 
     setNoteType("NoteTxt")
     setNoteToAdd(noteService.getEmptyNote("NoteTxt"))
+    setIsColorPickerShown(false)
     setIsExpanded(false)
   }
 
@@ -86,18 +93,29 @@ export function NoteAdd({ onAddNote }) {
   }
 
   return (
-    <form className="note-add" onSubmit={onSubmitNote}>
+    <form className="note-add" style={noteToAdd.style} onSubmit={onSubmitNote}>
       <DynamicCmp
         cmpType={noteType}
         info={noteToAdd.info}
         isEditMode={true}
         onChangeInfo={handleChange}
       />
-
+      
       <div className="add-actions">
         <TypePicker />
+        <button
+          type="button"
+          className="color-btn"
+          onClick={() => setIsColorPickerShown((prev) => !prev)}
+          aria-label="Change color"
+        >
+          <i className="fa-solid fa-palette"></i>
+        </button>
+
         <button>Close</button>
       </div>
+
+      {isColorPickerShown && <ColorPicker onSetStyle={onSetStyle} />}
     </form>
   )
 }
