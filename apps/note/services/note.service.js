@@ -29,19 +29,26 @@ function save(note) {
     }
 }
 
-function getEmptyNote(txt = '') {
+function getEmptyNote(type = 'NoteTxt') {
+    const infoMap = {
+        NoteTxt: { txt: '' },
+        NoteImg: { url: '', title: '' },
+        NoteVideo: { url: '', title: '' },
+        NoteTodos: { title: '', todos: [{ txt: '', isDone: false }] }
+    }
+
     return {
         createdAt: Date.now(),
-        type: 'NoteTxt',
+        type,
         isPinned: false,
         style: {
             backgroundColor: '#ffffff'
         },
-        info: {
-            txt
-        }
+        info: infoMap[type]
     }
 }
+
+
 // Private functions
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
