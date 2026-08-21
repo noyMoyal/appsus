@@ -1,44 +1,74 @@
 /* note add */
 
 .note-add {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
 
-    max-width: 600px;
-    min-height: 46px;
-    margin: 0 auto 2em;
-    padding: 12px 16px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-                rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.note-add input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 400;
+.note-add-collapsed {
+  flex-direction: row;
+  align-items: center;
+  min-height: 46px;
 }
-.note-add input::placeholder {
-    color: rgba(0, 0, 0, 0.6);
+
+.note-add input,
+.note-add textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.note-add input::placeholder,
+.note-add textarea::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.add-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.type-picker {
+  display: flex;
+  gap: 0.25em;
 }
 
 .note-add button {
-    border: none;
-    background-color: transparent;
-    padding: 0.4em 0.8em;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: inherit;
-    color: #5f6368;
+  border: none;
+  background-color: transparent;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  color: rgba(0, 0, 0, 0.54);
 }
 
-
 .note-add button:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.todo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
