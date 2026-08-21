@@ -34,10 +34,10 @@ export function NoteAdd({ onAddNote }) {
     ev.preventDefault()
 
     const hasContent = Object.values(noteToAdd.info).some((val) => val.length)
-    if (!hasContent) return
+    if (hasContent) onAddNote(noteToAdd)
 
-    onAddNote(noteToAdd)
-    setNoteToAdd(noteService.getEmptyNote(noteType))
+    setNoteType("NoteTxt")
+    setNoteToAdd(noteService.getEmptyNote("NoteTxt"))
     setIsExpanded(false)
   }
 
