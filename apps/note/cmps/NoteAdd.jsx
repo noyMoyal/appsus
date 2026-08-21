@@ -7,7 +7,11 @@ const TYPE_BUTTONS = [
   { type: "NoteTxt", icon: "fa-solid fa-font", label: "Text note" },
   { type: "NoteImg", icon: "fa-solid fa-image", label: "Image note" },
   { type: "NoteVideo", icon: "fa-brands fa-youtube", label: "Video note" },
-  { type: "NoteTodos", icon: "fa-regular fa-square-check", label: "Todos note" },
+  {
+    type: "NoteTodos",
+    icon: "fa-regular fa-square-check",
+    label: "Todos note",
+  },
 ]
 
 export function NoteAdd({ onAddNote }) {
@@ -33,7 +37,16 @@ export function NoteAdd({ onAddNote }) {
   function onSubmitNote(ev) {
     ev.preventDefault()
 
-    const hasContent = Object.values(noteToAdd.info).some((val) => val.length)
+    const { txt = "", url = "", title = "", todos = [] } = noteToAdd.info
+
+    const contentMap = {
+      NoteTxt: txt,
+      NoteImg: url,
+      NoteVideo: url,
+      NoteTodos: title || todos.some((todo) => todo.txt),
+    }
+
+    const hasContent = contentMap[noteType]
     if (hasContent) onAddNote(noteToAdd)
 
     setNoteType("NoteTxt")
