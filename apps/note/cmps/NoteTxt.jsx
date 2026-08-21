@@ -1,5 +1,5 @@
 export function NoteTxt({ info, isEditMode, onChangeInfo }) {
-    
+
       console.log('NoteTxt got:', info, 'isEditMode:', isEditMode)
 
     if (isEditMode) {
@@ -8,6 +8,7 @@ export function NoteTxt({ info, isEditMode, onChangeInfo }) {
                 name="txt"
                 value={info.txt}
                 onChange={onChangeInfo}
+                placeholder="Take a note..."
             />
         )
     }
