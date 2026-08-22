@@ -45,6 +45,7 @@
 }
 
 .note-preview textarea:focus {
+
   outline: none;
 }
 .note-preview img,
@@ -87,3 +88,8 @@
 .note-todos input[type="checkbox"] {
     cursor: pointer;
 }
+
+.note-preview p {
+    white-space: pre-line;
+}
+

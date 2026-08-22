@@ -1,1 +1,19 @@
- /* mail list */
+.mail-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.mail-list li {
+    border-bottom: 1px solid #e7e8ea;
+}
+
+.mail-list li:last-child {
+    border-bottom: 0;
+}

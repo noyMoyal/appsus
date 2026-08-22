@@ -1,0 +1,136 @@
+.book-details {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 28px;
+
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.book-details > h2 {
+    margin-bottom: 24px;
+    font-size: 1.8em;
+}
+
+.book-details > h3 {
+    margin-bottom: 6px;
+    font-size: 1.5em;
+}
+
+.book-details > h4 {
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: normal;
+}
+
+.book-details > img {
+    display: block;
+
+    width: 180px;
+    max-height: 260px;
+    object-fit: cover;
+
+    margin: 0 auto 24px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.book-details p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.book-details .cheap {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.book-details .expensive {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.book-details .on-sale {
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    background-color: #fff3cd;
+    color: #805b00;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+.review-list {
+    margin: 25px 0;
+    padding-top: 20px;
+
+    border-top: 1px solid #ddd;
+}
+
+.review-list article {
+    margin-bottom: 12px;
+    padding: 14px;
+
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+.review-list button {
+    padding: 6px 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    background-color: #f8d7da;
+
+    cursor: pointer;
+}
+
+.book-details > a {
+    display: inline-block;
+
+    margin-top: 20px;
+    padding: 8px 12px;
+
+    color: #333;
+    text-decoration: none;
+
+    background-color: #f1f3f4;
+    border-radius: 6px;
+}
+
+.book-details > a:hover {
+    background-color: #e2e5e8;
+}
+
+.book-details > span {
+    margin: 0 4px;
+    color: #bbb;
+}
+
+@media (max-width: 740px) {
+    .book-details {
+        margin: 12px;
+        padding: 18px;
+    }
+
+    .book-details > img {
+        width: 140px;
+    }
+
+    .book-details > a {
+        margin-top: 10px;
+    }
+
+    .book-details > span {
+        display: none;
+    }
+}

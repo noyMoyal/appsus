@@ -1,0 +1,85 @@
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+
+    padding: 0;
+    margin: 30px 0;
+
+    list-style: none;
+}
+
+.book-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 18px;
+
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition: transform .2s, box-shadow .2s;
+}
+
+.book-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.book-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.book-actions a {
+    text-decoration: none;
+}
+
+.book-actions button {
+    padding: 8px 12px;
+
+    border: 0;
+    border-radius: 6px;
+
+    font-size: .9em;
+    cursor: pointer;
+}
+
+.details-btn {
+    background-color: #e8f0fe;
+}
+
+.details-btn:hover {
+    background-color: #d2e3fc;
+}
+
+.edit-btn {
+    background-color: #fff3cd;
+}
+
+.edit-btn:hover {
+    background-color: #ffe69c;
+}
+
+.remove-btn {
+    background-color: #f8d7da;
+}
+
+.remove-btn:hover {
+    background-color: #f1aeb5;
+}
+
+@media (max-width: 740px) {
+    .book-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}

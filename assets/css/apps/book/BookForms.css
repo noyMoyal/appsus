@@ -1,0 +1,83 @@
+.book-edit,
+.add-review {
+    max-width: 520px;
+    margin: 24px auto;
+    padding: 22px;
+
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.book-edit h2,
+.add-review h3 {
+    margin-bottom: 18px;
+}
+
+.book-edit form,
+.add-review form {
+    display: grid;
+    gap: 14px;
+}
+
+.book-edit label,
+.add-review label {
+    display: grid;
+    gap: 6px;
+
+    font-weight: bold;
+}
+
+.book-edit input,
+.add-review input,
+.add-review select {
+    padding: 9px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 1em;
+}
+
+.book-edit input:focus,
+.add-review input:focus,
+.add-review select:focus {
+    outline: none;
+    border-color: #8aaee8;
+}
+
+.book-edit button,
+.add-review button {
+    padding: 9px 14px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background-color: #e8f0fe;
+
+    cursor: pointer;
+}
+
+.book-edit button:hover,
+.add-review button:hover {
+    background-color: #d2e3fc;
+}
+
+.book-edit {
+    border: 0;
+}
+
+.book-edit::backdrop {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 740px) {
+
+    .book-edit,
+    .add-review {
+        margin: 15px 10px;
+        padding: 16px;
+    }
+}
