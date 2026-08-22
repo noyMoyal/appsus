@@ -11,10 +11,29 @@ export const noteService = {
     remove,
     save,
     getEmptyNote,
+    getDefaultFilter,
 }
 
-function query() {
+function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
+        .then(notes => {
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+
+                notes = notes.filter(note => {
+                    const title = note.info.title || ''
+                    const txt = note.info.txt || ''
+
+                    return regExp.test(title) || regExp.test(txt)
+                })
+            }
+
+            if (filterBy.type) {
+                notes = notes.filter(note => note.type === filterBy.type)
+            }
+
+            return notes
+        })
 }
 
 function remove(noteId) {
@@ -37,6 +56,7 @@ function getEmptyNote(type = 'NoteTxt') {
         NoteTodos: { title: '', todos: [{ txt: '', isDone: false }] }
     }
 
+
     return {
         createdAt: Date.now(),
         type,
@@ -46,6 +66,10 @@ function getEmptyNote(type = 'NoteTxt') {
         },
         info: infoMap[type]
     }
+}
+
+function getDefaultFilter() {
+    return { txt: '', type: '' }
 }
 
 
